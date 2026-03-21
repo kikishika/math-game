@@ -232,10 +232,18 @@ function endGame() {
     saveToLocal();
     
     let title = '게임 종료!';
-    if(score === 100) title = '최고에요! 완벽합니다!';
-    else if(score >= 80) title = '참 잘했어요!';
-    else if(score >= 60) title = '잘했어요! 조금 더 노력해봐요!';
-    else title = '아쉽네요. 다시 도전해봐요!';
+    if(score === 100) {
+        if(isRewardEarned) {
+             title = '💯 완벽해요! 시간 안에도 통과해서 보너스 시간 획득! 🎁';
+        } else {
+             title = '💯 백점이에요! (시간 제한을 아쉽게 넘겨서 보너스는 없어요 😢)';
+        }
+    }
+    else if(score === 80) title = '👏 대단해요! 딱 한 개 실수해버렸네, 다음엔 백점 도전!';
+    else if(score === 60) title = '👍 잘했어요! 절반 이상 맞췄어요, 멋져요!';
+    else if(score === 40) title = '💪 아쉬워요! 조금만 더 신중하게 풀어볼까요?';
+    else if(score === 20) title = '🌟 괜찮아요! 처음엔 다 어려운 법이니까 계속 연습해봐요!';
+    else title = '🚀 헉, 하나도 못 맞췄어요! 천천히 하나씩 다시 같이 풀어봐요!';
     
     document.getElementById('result-title').textContent = title;
 

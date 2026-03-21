@@ -17,6 +17,7 @@
     font-family: 'Jua', sans-serif;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 body {

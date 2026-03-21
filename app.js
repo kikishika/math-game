@@ -8,6 +8,19 @@ let timerInterval = null;
 let currentInput = '';
 let timeElapsed = 0;
 
+let gameHistory = JSON.parse(localStorage.getItem('mathGameHistory')) || [];
+let myRewards = JSON.parse(localStorage.getItem('mathGameRewards')) || [];
+
+function saveToLocal() {
+    localStorage.setItem('mathGameHistory', JSON.stringify(gameHistory));
+    localStorage.setItem('mathGameRewards', JSON.stringify(myRewards));
+}
+
+function goToHome() {
+    clearInterval(timerInterval);
+    showScreen('screen-main');
+}
+
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(el => {
         el.classList.add('hidden');
@@ -176,14 +189,47 @@ function endGame() {
     document.getElementById('final-time').textContent = timeElapsed;
     
     const rewardContainer = document.getElementById('reward-container');
+    
+    let isRewardEarned = false;
+    let earnedReward = 0;
+    
+    // 조건: 100점이고, (1자리수 && 15초 이하) 또는 (2자리수 && 60초 이하)
     if (score === 100) {
-        const rewards = [5, 10, 15];
-        const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
-        document.getElementById('reward-time').textContent = `${randomReward}분`;
+        if ((currentLevel === 1 && timeElapsed <= 15) || (currentLevel === 2 && timeElapsed <= 60)) {
+            isRewardEarned = true;
+            const rewards = [5, 10, 15];
+            earnedReward = rewards[Math.floor(Math.random() * rewards.length)];
+            myRewards.push(earnedReward);
+        }
+    }
+    
+    if (isRewardEarned) {
+        document.getElementById('reward-time').textContent = `${earnedReward}분`;
         rewardContainer.classList.remove('hidden');
     } else {
         rewardContainer.classList.add('hidden');
     }
+    
+    // 기록 저장
+    let opName = '';
+    if(currentOperation === '+') opName = '더하기';
+    if(currentOperation === '-') opName = '빼기';
+    if(currentOperation === '*') opName = '곱하기';
+    if(currentOperation === '/') opName = '나누기';
+
+    gameHistory.unshift({
+        op: opName,
+        level: currentLevel,
+        score: score,
+        time: timeElapsed,
+        reward: earnedReward,
+        date: new Date().toLocaleString('ko-KR')
+    });
+    
+    // 최대 30개만 보관
+    if(gameHistory.length > 30) gameHistory.pop();
+    
+    saveToLocal();
     
     let title = '게임 종료!';
     if(score === 100) title = '최고에요! 완벽합니다!';
@@ -198,4 +244,69 @@ function endGame() {
 
 function resetGame() {
     showScreen('screen-main');
+}
+
+function showHistory() {
+    updateHistoryUI();
+    showScreen('screen-history');
+}
+
+function updateHistoryUI() {
+    const rewardUl = document.getElementById('reward-ul');
+    const historyUl = document.getElementById('history-ul');
+    const totalTimeSpan = document.getElementById('total-reward-time');
+    
+    // 선물 리스트 렌더링
+    rewardUl.innerHTML = '';
+    let totalTime = 0;
+    
+    if (myRewards.length === 0) {
+        rewardUl.innerHTML = '<li style="justify-content:center; color:#999;">보유한 선물이 없습니다.</li>';
+    } else {
+        myRewards.forEach((req, index) => {
+            totalTime += req;
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>🎁 보너스 <strong>${req}분</strong></span>
+                <button class="use-btn" onclick="useReward(${index})">사용</button>
+            `;
+            rewardUl.appendChild(li);
+        });
+    }
+    totalTimeSpan.textContent = totalTime;
+    
+    // 기록 리스트 렌더링
+    historyUl.innerHTML = '';
+    if (gameHistory.length === 0) {
+        historyUl.innerHTML = '<li style="justify-content:center; color:#999;">게임 기록이 없습니다.</li>';
+    } else {
+        gameHistory.forEach(h => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div style="display:flex; flex-direction:column;">
+                    <span style="font-size:0.9rem; color:#888;">${h.date}</span>
+                    <span>${h.op} ${h.level}자리 - <strong>${h.score}점</strong> (${h.time}초)</span>
+                </div>
+                <span style="color:#E65100; font-weight:bold;">${h.reward > 0 ? '+' + h.reward + '분' : ''}</span>
+            `;
+            historyUl.appendChild(li);
+        });
+    }
+}
+
+function useReward(index) {
+    if(confirm('이 선물을 사용하시겠습니까? (사용 후에는 사라집니다!)')) {
+        myRewards.splice(index, 1);
+        saveToLocal();
+        updateHistoryUI();
+    }
+}
+
+function resetHistory() {
+    if(confirm('모든 기록과 선물이 삭제됩니다. 초기화하시겠습니까?')) {
+        gameHistory = [];
+        myRewards = [];
+        saveToLocal();
+        updateHistoryUI();
+    }
 }

@@ -279,3 +279,38 @@ p {
 .correct-answer {
     animation: correctPop 0.5s ease-in-out;
 }
+
+/* History & Rewards */
+.history-ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+.history-ul li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+}
+.reward-list-container, .history-list-container {
+    background-color: #fff;
+    border: 2px solid #eee;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+.use-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

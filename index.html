@@ -19,6 +19,7 @@
                 <button class="menu-btn btn-mul" onclick="selectOperation('*')">곱하기 (×)</button>
                 <button class="menu-btn btn-div" onclick="selectOperation('/')">나누기 (÷)</button>
             </div>
+            <button class="menu-btn btn-history" style="margin-top: 15px; background-color: #607D8B; font-size: 1.2rem; padding: 15px;" onclick="showHistory()">📝 기록 및 선물 보관함</button>
         </div>
 
         <!-- 난이도 선택 화면 -->
@@ -34,6 +35,9 @@
 
         <!-- 게임 화면 -->
         <div id="screen-game" class="screen hidden">
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                <button onclick="goToHome()" style="padding: 5px 15px; border-radius: 10px; border: none; background-color: #ccc; font-family: 'Jua', sans-serif; cursor: pointer;">🏠 홈으로</button>
+            </div>
             <div class="game-header">
                 <div class="progress">문제: <span id="current-q">1</span> / 5</div>
                 <div class="timer">시간: <span id="time-elapsed">0</span>초</div>
@@ -77,6 +81,27 @@
 
             <button class="menu-btn btn-restart" onclick="resetGame()">처음으로 돌아가기</button>
         </div>
+
+        <!-- 기록 및 보상 화면 -->
+        <div id="screen-history" class="screen hidden" style="overflow-y: auto;">
+            <h1>선물 보관함</h1>
+            
+            <div class="reward-list-container">
+                <h3>보유 중인 선물 (총 <span id="total-reward-time">0</span>분)</h3>
+                <ul id="reward-ul" class="history-ul"></ul>
+            </div>
+
+            <h1 style="margin-top:20px; font-size: 2rem;">최근 게임 기록</h1>
+            <div class="history-list-container">
+                <ul id="history-ul" class="history-ul"></ul>
+            </div>
+            
+            <div style="display:flex; justify-content: space-between; margin-top:20px;">
+                <button onclick="resetHistory()" style="padding: 10px; border-radius: 10px; background-color:#F44336; color:white; border:none; cursor:pointer;">기록 모두 지우기</button>
+                <button onclick="goToHome()" style="padding: 10px; border-radius: 10px; background-color:#ccc; border:none; cursor:pointer;">홈으로 가기</button>
+            </div>
+        </div>
+
     </div>
     <script src="app.js"></script>
 </body>

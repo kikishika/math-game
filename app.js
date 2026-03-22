@@ -248,8 +248,8 @@ function endGame() {
         date: new Date().toLocaleString('ko-KR')
     });
     
-    // 최대 30개만 보관
-    if(gameHistory.length > 30) gameHistory.pop();
+    // 최대 50개만 보관 (사용 기록 포함)
+    if(gameHistory.length > 50) gameHistory.pop();
     
     saveToLocal();
     
@@ -312,21 +312,40 @@ function updateHistoryUI() {
     } else {
         gameHistory.forEach(h => {
             const li = document.createElement('li');
-            li.innerHTML = `
-                <div style="display:flex; flex-direction:column;">
-                    <span style="font-size:0.9rem; color:#888;">${h.date}</span>
-                    <span>${h.op} ${h.level}자리 - <strong>${h.score}점</strong> (${h.time}초)</span>
-                </div>
-                <span style="color:#E65100; font-weight:bold;">${h.reward > 0 ? '+' + h.reward + '분' : ''}</span>
-            `;
+            if (h.type === 'use_coupon') {
+                li.innerHTML = `
+                    <div style="display:flex; flex-direction:column;">
+                        <span style="font-size:0.9rem; color:#888;">${h.date}</span>
+                        <span style="color:#4CAF50; font-weight:bold;">✅ 보너스 시간 사용 완료</span>
+                    </div>
+                    <span style="color:#F44336; font-weight:bold;">-${h.usedAmount}분</span>
+                `;
+            } else {
+                li.innerHTML = `
+                    <div style="display:flex; flex-direction:column;">
+                        <span style="font-size:0.9rem; color:#888;">${h.date}</span>
+                        <span>${h.op} ${h.level}자리 - <strong>${h.score}점</strong> (${h.time}초)</span>
+                    </div>
+                    <span style="color:#E65100; font-weight:bold;">${h.reward > 0 ? '+' + h.reward + '분' : ''}</span>
+                `;
+            }
             historyUl.appendChild(li);
         });
     }
 }
 
 function useReward(index) {
-    if(confirm('이 선물을 사용하시겠습니까? (사용 후에는 사라집니다!)')) {
+    const usedAmount = myRewards[index];
+    if(confirm(`이 선물(${usedAmount}분)을 사용하시겠습니까? (사용 후에는 사라집니다!)`)) {
         myRewards.splice(index, 1);
+        
+        gameHistory.unshift({
+            type: 'use_coupon',
+            usedAmount: usedAmount,
+            date: new Date().toLocaleString('ko-KR')
+        });
+        if(gameHistory.length > 50) gameHistory.pop();
+        
         saveToLocal();
         updateHistoryUI();
     }

@@ -173,20 +173,38 @@ p {
 .banner-content {
     display: flex;
     align-items: center;
-    animation: marquee 15s linear infinite;
+    animation: marquee 10s linear infinite;
     white-space: nowrap;
 }
 
 .banner-text {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     color: #1565C0;
     font-weight: bold;
-    margin-left: 20px;
+    margin: 0 30px;
 }
 
 @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    0% { transform: translateX(50%); }
+    100% { transform: translateX(-150%); }
+}
+
+.positive-message-bar {
+    background: linear-gradient(to right, #FFEB3B, #FFC107);
+    padding: 12px;
+    border-radius: 15px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #5D4037;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
 }
 
 .heart-animation {

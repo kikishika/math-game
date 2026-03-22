@@ -123,19 +123,19 @@ p {
 .menu-btn {
     border: none;
     border-radius: 30px;
-    padding: 15px 10px;
-    font-size: 1.3rem; /* 이미지가 들어가므로 폰트 크기 조절 */
+    padding: clamp(10px, 2vh, 15px) 10px;
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
     color: white;
     cursor: pointer;
     box-shadow: 0 8px 0 rgba(0,0,0,0.1), inset 0 -4px 10px rgba(0,0,0,0.2);
     transition: all 0.1s;
     display: flex;
-    flex-direction: column; /* 아이콘과 텍스트 상하 배치 */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     text-shadow: 1px 2px 2px rgba(0,0,0,0.2);
-    gap: 8px;
+    gap: 5px;
 }
 
 .btn-char-wrapper, .mascot-wrapper {
@@ -520,47 +520,65 @@ p {
 /* Media Queries for different devices */
 @media (max-width: 400px) {
     #app {
-        border-width: 5px;
-        border-radius: 30px;
+        border-width: 4px;
+        border-radius: 25px;
         height: 98%;
         margin: 5px;
-        width: 98%;
+        width: 96%;
     }
     .screen {
-        padding: 10px;
+        padding: 5px 15px; /* 위아래 패딩 획기적 축소 */
     }
     h1 {
-        font-size: 1.8rem;
-        margin-top: 10px;
+        font-size: 1.5rem;
+        margin-top: 5px;
+        margin-bottom: 2px;
     }
     p {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding: 2px 10px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+    }
+    .menu-grid {
+        gap: 8px;
+        margin: 5px 0;
     }
     .menu-btn {
-        padding: 10px 5px;
+        flex-direction: row; /* 가로로 배치해서 세로 공간 절약 */
+        padding: 8px 10px;
+        border-radius: 15px;
         font-size: 1rem;
-        border-radius: 20px;
+        gap: 10px;
+        justify-content: flex-start;
     }
-    .btn-char-img {
+    .btn-char-wrapper .btn-char-img {
+        width: 35px;
+        height: 35px;
+    }
+    .mascot-img {
         width: 40px;
         height: 40px;
     }
-    .mascot-img {
-        width: 50px;
-        height: 50px;
-    }
     .banner-container {
-        padding: 8px 0;
-        margin-bottom: 10px;
+        padding: 5px 0;
+        margin-bottom: 5px;
+        border-width: 2px;
     }
     #question-text {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+    }
+    #answer-input {
+        height: 45px;
+        font-size: 1.8rem;
+    }
+    .numpad {
+        padding: 10px;
+        gap: 5px;
+        margin: 0 -10px;
     }
     .numpad button {
-        font-size: 1.4rem;
-        padding: 8px 0;
+        font-size: 1.2rem;
+        padding: 6px 0;
     }
 }
 

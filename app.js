@@ -7,6 +7,7 @@ let startTime = 0;
 let timerInterval = null;
 let currentInput = '';
 let timeElapsed = 0;
+let isSubmitting = false;
 
 let gameHistory = [];
 let myRewards = [];
@@ -179,7 +180,9 @@ function updateInputDisplay() {
 }
 
 function submitAnswer() {
-    if (currentInput === '') return;
+    if (currentInput === '' || isSubmitting) return;
+    
+    isSubmitting = true;
     
     const isCorrect = parseInt(currentInput) === questions[currentQuestionIndex].answer;
     const inputDisplay = document.getElementById('answer-input');
@@ -193,6 +196,7 @@ function submitAnswer() {
 
     // 약간의 딜레이 후 다음 문제로
     setTimeout(() => {
+        isSubmitting = false;
         inputDisplay.classList.remove('correct-answer', 'wrong-answer');
         currentQuestionIndex++;
         if (currentQuestionIndex < 5) {

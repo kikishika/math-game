@@ -170,6 +170,15 @@ p {
     align-items: center;
 }
 
+.result-details {
+    margin: 5px 0;
+}
+
+.result-details p {
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+}
+
 #question-text {
     font-size: clamp(2.5rem, 8vh, 3.5rem);
     font-weight: bold;

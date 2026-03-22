@@ -18,22 +18,25 @@
     <div id="app">
         <!-- 메인 화면: 연산 선택 -->
         <div id="screen-main" class="screen active">
-            <!-- 캐릭터들이 장난치는 재미있는 배너 -->
+            <!-- 멈추지 않는 무한 배너 -->
             <div class="banner-container">
-                <div class="banner-content">
-                    <img src="char_add.png" class="mascot" alt="더하기">
-                    <img src="char_sub.png" class="mascot" alt="빼기">
-                    <img src="char_mul.png" class="mascot" alt="곱하기">
-                    <img src="char_div.png" class="mascot" alt="나누기">
-                    <!-- 끊기지 않게 한 번 더 반복 -->
-                    <img src="char_add.png" class="mascot" alt="더하기">
-                    <img src="char_sub.png" class="mascot" alt="빼기">
-                    <img src="char_mul.png" class="mascot" alt="곱하기">
-                    <img src="char_div.png" class="mascot" alt="나누기">
+                <div class="marquee-wrapper">
+                    <div class="banner-content">
+                        <img src="char_add.png" class="mascot" alt="더하기">
+                        <img src="char_sub.png" class="mascot" alt="빼기">
+                        <img src="char_mul.png" class="mascot" alt="곱하기">
+                        <img src="char_div.png" class="mascot" alt="나누기">
+                    </div>
+                    <div class="banner-content">
+                        <img src="char_add.png" class="mascot" alt="더하기">
+                        <img src="char_sub.png" class="mascot" alt="빼기">
+                        <img src="char_mul.png" class="mascot" alt="곱하기">
+                        <img src="char_div.png" class="mascot" alt="나누기">
+                    </div>
                 </div>
             </div>
             <h1>도전! 연산왕</h1>
-            <p>어떤 게임을 해볼까요?</p>
+            <p>신나게 연산 놀이를 시작해볼까요?</p>
             <div class="menu-grid">
                 <button class="menu-btn btn-add" onclick="selectOperation('+')">더하기 (+)</button>
                 <button class="menu-btn btn-sub" onclick="selectOperation('-')">빼기 (-)</button>

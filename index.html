@@ -25,23 +25,35 @@
                         <img src="char_add.png" class="mascot" alt="더하기">
                         <img src="char_sub.png" class="mascot" alt="빼기">
                         <img src="char_mul.png" class="mascot" alt="곱하기">
-                        <img src="char_div.png" class="mascot" alt="나누기">
+                        <img src="char_div.png" class="mascot char-div-style" alt="나누기">
                     </div>
                     <div class="banner-content">
                         <img src="char_add.png" class="mascot" alt="더하기">
                         <img src="char_sub.png" class="mascot" alt="빼기">
                         <img src="char_mul.png" class="mascot" alt="곱하기">
-                        <img src="char_div.png" class="mascot" alt="나누기">
+                        <img src="char_div.png" class="mascot char-div-style" alt="나누기">
                     </div>
                 </div>
             </div>
             <h1>도전! 연산왕</h1>
             <p>신나게 연산 놀이를 시작해볼까요?</p>
             <div class="menu-grid">
-                <button class="menu-btn btn-add" onclick="selectOperation('+')">더하기 (+)</button>
-                <button class="menu-btn btn-sub" onclick="selectOperation('-')">빼기 (-)</button>
-                <button class="menu-btn btn-mul" onclick="selectOperation('*')">곱하기 (×)</button>
-                <button class="menu-btn btn-div" onclick="selectOperation('/')">나누기 (÷)</button>
+                <button class="menu-btn btn-add" onclick="selectOperation('+')">
+                    <img src="char_add.png" class="btn-char" alt="더하기">
+                    <span>더하기 (+)</span>
+                </button>
+                <button class="menu-btn btn-sub" onclick="selectOperation('-')">
+                    <img src="char_sub.png" class="btn-char" alt="빼기">
+                    <span>빼기 (-)</span>
+                </button>
+                <button class="menu-btn btn-mul" onclick="selectOperation('*')">
+                    <img src="char_mul.png" class="btn-char" alt="곱하기">
+                    <span>곱하기 (×)</span>
+                </button>
+                <button class="menu-btn btn-div" onclick="selectOperation('/')">
+                    <img src="char_div.png" class="btn-char char-div-style" alt="나누기">
+                    <span>나누기 (÷)</span>
+                </button>
             </div>
             <button class="menu-btn btn-history"
                 style="background-color: #607D8B; font-size: 1.2rem; padding: 15px; margin-bottom: 10px;"
@@ -103,9 +115,11 @@
             </div>
 
             <div id="reward-container" class="reward-box hidden">
-                <h2>🎉 백점 만점 축하해요! 🎉</h2>
-                <p>보너스 사용 시간 선물 도착!</p>
+                <img src="mascot_v2.png" class="reward-mascot" alt="연산왕">
+                <h2>👑 연산왕의 특별 선물! 👑</h2>
+                <p>백점 만점! 보너스 사용 시간이 도착했어요!</p>
                 <div id="reward-time" class="reward-highlight"></div>
+                <p style="font-size: 0.9rem; color: #795548; margin-top: 5px;">선물 보관함을 확인해보세요!</p>
             </div>
 
             <button class="menu-btn btn-restart" onclick="resetGame()">처음으로 돌아가기</button>

@@ -57,8 +57,10 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 10px 20px; /* 화면 작은 폰 찌그러짐 방지 (위아래 여백 줄임) */
+    padding: 15px 20px 40px 20px; /* 아래쪽 여백 40px로 늘림 (잘림 방지) */
     transition: opacity 0.3s ease;
+    overflow-y: auto; /* 내용이 많으면 스크롤 */
+    position: relative;
 }
 
 .hidden {
@@ -85,7 +87,7 @@ h1 {
     text-align: center;
     font-size: 2.5rem;
     color: #333;
-    margin-top: 30px;
+    margin-top: 15px; /* 줄임 */
     margin-bottom: 10px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
@@ -131,7 +133,11 @@ p {
 .btn-div { background: linear-gradient(135deg, #E91E63, #C2185B); }
 .btn-level1 { background: linear-gradient(135deg, #8BC34A, #689F38); grid-column: 1 / -1; }
 .btn-level2 { background: linear-gradient(135deg, #FFC107, #FFA000); grid-column: 1 / -1; }
-.btn-restart { background: linear-gradient(135deg, #4CAF50, #388E3C); grid-column: 1 / -1; margin-top: 20px; }
+.btn-restart {
+    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    grid-column: 1 / -1;
+    margin-top: 25px !important; /* 위쪽 여백 확실히 확보 */
+}
 .btn-history { background: linear-gradient(135deg, #607D8B, #455A64) !important; color: white !important; }
 
 .back-btn {

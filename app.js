@@ -8,12 +8,34 @@ let timerInterval = null;
 let currentInput = '';
 let timeElapsed = 0;
 
-let gameHistory = JSON.parse(localStorage.getItem('mathGameHistory')) || [];
-let myRewards = JSON.parse(localStorage.getItem('mathGameRewards')) || [];
+let gameHistory = [];
+let myRewards = [];
+
+function loadFromLocal() {
+    try {
+        const savedHistory = localStorage.getItem('mathGameHistory');
+        if(savedHistory) {
+            gameHistory = JSON.parse(savedHistory);
+        }
+        const savedRewards = localStorage.getItem('mathGameRewards');
+        if(savedRewards) {
+            myRewards = JSON.parse(savedRewards);
+        }
+    } catch(e) {
+        console.error("데이터 로드 오류:", e);
+        gameHistory = [];
+        myRewards = [];
+    }
+}
+loadFromLocal();
 
 function saveToLocal() {
-    localStorage.setItem('mathGameHistory', JSON.stringify(gameHistory));
-    localStorage.setItem('mathGameRewards', JSON.stringify(myRewards));
+    try {
+        localStorage.setItem('mathGameHistory', JSON.stringify(gameHistory));
+        localStorage.setItem('mathGameRewards', JSON.stringify(myRewards));
+    } catch(e) {
+        console.error("데이터 저장 오류:", e);
+    }
 }
 
 function goToHome() {

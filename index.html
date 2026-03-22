@@ -18,17 +18,18 @@
     <div id="app">
         <!-- 메인 화면: 연산 선택 -->
         <div id="screen-main" class="screen active">
-            <!-- 4명의 연산 친구들이 함께하는 동적 배너 -->
+            <!-- 캐릭터들이 장난치는 재미있는 배너 -->
             <div class="banner-container">
                 <div class="banner-content">
                     <img src="char_add.png" class="mascot" alt="더하기">
-                    <span class="banner-text">수학은 재미있는 내 친구! 🎈</span>
                     <img src="char_sub.png" class="mascot" alt="빼기">
-                    <span class="banner-text">숫자와 함께 신나게 놀아볼까요? 🔢</span>
                     <img src="char_mul.png" class="mascot" alt="곱하기">
-                    <span class="banner-text">너도 이제 대단한 연산왕! 👑</span>
                     <img src="char_div.png" class="mascot" alt="나누기">
-                    <span class="banner-text">나누면 즐거움이 두 배! ✨</span>
+                    <!-- 끊기지 않게 한 번 더 반복 -->
+                    <img src="char_add.png" class="mascot" alt="더하기">
+                    <img src="char_sub.png" class="mascot" alt="빼기">
+                    <img src="char_mul.png" class="mascot" alt="곱하기">
+                    <img src="char_div.png" class="mascot" alt="나누기">
                 </div>
             </div>
             <h1>도전! 연산왕</h1>
@@ -42,9 +43,6 @@
             <button class="menu-btn btn-history"
                 style="background-color: #607D8B; font-size: 1.2rem; padding: 15px; margin-bottom: 20px;"
                 onclick="showHistory()">📝 기록 및 선물 보관함</button>
-            <div class="positive-message-bar">
-                너는 세상에서 가장 멋진 수학 연산왕이 될 거야! ⭐
-            </div>
         </div>
 
         <!-- 난이도 선택 화면 -->

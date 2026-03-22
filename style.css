@@ -214,58 +214,6 @@ p {
     box-shadow: 0 4px 0 #78909C;
 }
 
-/* Banner Animation - Seamless */
-.banner-container {
-    width: 100%;
-    background-color: #FFF9C4;
-    padding: 20px 0;
-    border-radius: 30px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    box-shadow: inset 0 3px 10px rgba(0,0,0,0.1);
-    border: 4px solid #FBC02D;
-    position: relative;
-}
-
-.marquee-wrapper {
-    display: flex;
-    width: fit-content;
-    animation: seamless-marquee 8s linear infinite;
-}
-
-.banner-content {
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.mascot {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 20px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    border: 3px solid white;
-    background-color: white;
-    animation: mascot-play 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes seamless-marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-@keyframes mascot-play {
-    0% { transform: translateY(0) rotate(-8deg); }
-    100% { transform: translateY(-12px) rotate(8deg) scale(1.05); }
-}
-
-/* 개별 캐릭터마다 엇박자로 애니메이션 적용 */
-.marquee-wrapper img:nth-child(even) { animation-delay: 0.4s; }
-.marquee-wrapper img:nth-child(odd) { animation-delay: 0s; }
 
 .heart-animation {
     display: inline-block;

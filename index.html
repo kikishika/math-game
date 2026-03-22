@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -12,10 +13,12 @@
     <link rel="stylesheet" href="style.css?v=4">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
         <!-- 메인 화면: 연산 선택 -->
         <div id="screen-main" class="screen active">
+            <img src="mascot.png" class="mascot" alt="마스코트">
             <h1>도전! 연산왕</h1>
             <p>어떤 게임을 해볼까요?</p>
             <div class="menu-grid">
@@ -24,16 +27,19 @@
                 <button class="menu-btn btn-mul" onclick="selectOperation('*')">곱하기 (×)</button>
                 <button class="menu-btn btn-div" onclick="selectOperation('/')">나누기 (÷)</button>
             </div>
-            <button class="menu-btn btn-history" style="margin-top: 15px; background-color: #607D8B; font-size: 1.2rem; padding: 15px;" onclick="showHistory()">📝 기록 및 선물 보관함</button>
+            <button class="menu-btn btn-history"
+                style="background-color: #607D8B; font-size: 1.2rem; padding: 15px; margin-bottom: 20px;"
+                onclick="showHistory()">📝 기록 및 선물 보관함</button>
         </div>
 
         <!-- 난이도 선택 화면 -->
         <div id="screen-difficulty" class="screen hidden">
+            <img src="mascot.png" class="mascot" alt="마스코트" style="width: 100px;">
             <h1>난이도 선택</h1>
             <p id="selected-op-text"></p>
             <div class="menu-grid">
-                <button class="menu-btn btn-level1" onclick="selectDifficulty(1)">1자리 수<br>(초급)</button>
-                <button class="menu-btn btn-level2" onclick="selectDifficulty(2)">2자리 수<br>(중급)</button>
+                <button class="menu-btn btn-level1" onclick="selectDifficulty(1)">1자리 수 (초급)</button>
+                <button class="menu-btn btn-level2" onclick="selectDifficulty(2)">2자리 수 (중급)</button>
             </div>
             <button class="back-btn" onclick="showScreen('screen-main')">뒤로가기</button>
         </div>
@@ -41,7 +47,9 @@
         <!-- 게임 화면 -->
         <div id="screen-game" class="screen hidden">
             <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-                <button onclick="goToHome()" style="padding: 5px 15px; border-radius: 10px; border: none; background-color: #ccc; font-family: 'Jua', sans-serif; cursor: pointer;">🏠 홈으로</button>
+                <button onclick="goToHome()"
+                    style="padding: 5px 15px; border-radius: 10px; border: none; background-color: #ccc; font-family: 'Jua', sans-serif; cursor: pointer;">🏠
+                    홈으로</button>
             </div>
             <div class="game-header">
                 <div class="progress">문제: <span id="current-q">1</span> / 5</div>
@@ -51,7 +59,7 @@
                 <div id="question-text">5 + 3 = ?</div>
                 <div id="answer-input"></div>
             </div>
-            
+
             <!-- 커스텀 숫자 패드 -->
             <div class="numpad">
                 <button onclick="inputNumber(1)">1</button>
@@ -71,13 +79,14 @@
 
         <!-- 결과 화면 -->
         <div id="screen-result" class="screen hidden">
+            <img src="mascot.png" class="mascot" alt="마스코트" style="width: 120px;">
             <h1 id="result-title">게임 종료!</h1>
             <div class="result-details">
                 <p>점수: <span id="final-score" class="highlight"></span>점</p>
                 <p>맞힌 문제: <span id="correct-count"></span> / 5</p>
                 <p>걸린 시간: <span id="final-time"></span>초</p>
             </div>
-            
+
             <div id="reward-container" class="reward-box hidden">
                 <h2>🎉 백점 만점 축하해요! 🎉</h2>
                 <p>보너스 사용 시간 선물 도착!</p>
@@ -90,7 +99,7 @@
         <!-- 기록 및 보상 화면 -->
         <div id="screen-history" class="screen hidden" style="overflow-y: auto;">
             <h1>선물 보관함</h1>
-            
+
             <div class="reward-list-container">
                 <h3>보유 중인 선물 (총 <span id="total-reward-time">0</span>분)</h3>
                 <ul id="reward-ul" class="history-ul"></ul>
@@ -100,14 +109,15 @@
             <div class="history-list-container">
                 <ul id="history-ul" class="history-ul"></ul>
             </div>
-            
-            <div style="display:flex; justify-content: space-between; margin-top:20px;">
-                <button onclick="resetHistory()" style="padding: 10px; border-radius: 10px; background-color:#F44336; color:white; border:none; cursor:pointer;">기록 모두 지우기</button>
-                <button onclick="goToHome()" style="padding: 10px; border-radius: 10px; background-color:#ccc; border:none; cursor:pointer;">홈으로 가기</button>
+
+            <div class="history-footer">
+                <button onclick="resetHistory()" class="danger-btn">기록 모두 지우기</button>
+                <button onclick="goToHome()" class="secondary-btn">홈으로 가기</button>
             </div>
         </div>
 
     </div>
     <script src="app.js?v=7"></script>
 </body>
+
 </html>

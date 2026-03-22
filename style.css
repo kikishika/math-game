@@ -250,7 +250,7 @@ p {
 }
 
 .highlight {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--primary-color);
     font-weight: bold;
 }
@@ -259,8 +259,9 @@ p {
     background-color: #FFF9C4;
     border: 3px dashed #FBC02D;
     border-radius: 15px;
-    padding: 20px;
+    padding: 12px;
     text-align: center;
+    margin: 10px 0;
     animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -271,14 +272,15 @@ p {
 
 .reward-box h2 {
     color: #F57F17;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* Reduced from 10px */
+    font-size: 1.2rem; /* Added */
 }
 
 .reward-highlight {
-    font-size: 3rem;
+    font-size: 2rem; /* Reduced from 3rem */
     color: #E65100;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 5px; /* Reduced from 10px */
 }
 
 @keyframes shake {
